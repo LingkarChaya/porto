@@ -1,12 +1,13 @@
 'use client'
 
 import React from 'react'
+import Image from 'next/image'
 
 // Data untuk profil "Tentang Saya"
 const MY_PROFILE = {
   name: 'Lingkar Chaya', // Ganti dengan nama Anda
   role: 'Full-Stack Developer & 3D Artist', // Ganti dengan peran/jabatan Anda
-  avatar: '🧑‍💻', // Bisa diganti dengan emoji lain atau path gambar
+  avatar: '/profil foto-Photoroom.png', // Path gambar profil
   color: 'bg-blue-100',
   bio: 'Saya adalah seorang pengembang perangkat lunak dengan hasrat untuk menciptakan pengalaman digital yang intuitif dan menawan. Dengan keahlian di bidang pengembangan web modern dan seni 3D, saya berdedikasi untuk mengubah ide-ide kompleks menjadi solusi yang elegan dan fungsional.'
 }
@@ -18,8 +19,14 @@ export default function AboutMeContent() {
       <div className="flex flex-col md:flex-row items-center gap-10">
         {/* Avatar */}
         <div className={`w-48 h-48 rounded-full ${MY_PROFILE.color} flex-shrink-0 flex items-center justify-center overflow-hidden shadow-lg`}>
-          {/* Di proyek nyata, Anda bisa mengganti ini dengan tag <Image /> dari Next.js */}
-          <span className="text-7xl">{MY_PROFILE.avatar}</span>
+          <Image
+            src={MY_PROFILE.avatar}
+            alt={MY_PROFILE.name}
+            width={192}
+            height={192}
+            className="object-cover object-center"
+            style={{ transform: 'translateY(8%)' }}
+          />
         </div>
         
         {/* Info Teks */}

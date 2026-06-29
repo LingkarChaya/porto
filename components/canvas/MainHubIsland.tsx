@@ -21,7 +21,7 @@ interface IslandProps {
 // OPTIMASI: Ekstraksi Geometri dan Material ke luar komponen
 // =========================================================
 const extrudeSettings = {
-  depth: 1.5, // Lebih tebal karena ini main hub
+  depth: 1.5,
   bevelEnabled: true,
   bevelSegments: 8,
   steps: 1,
@@ -46,7 +46,7 @@ const rocketGroup = new THREE.Group();
 const bodyGeo = new THREE.CylinderGeometry(0.7, 0.7, 2.8, 32);
 const bodyMat = new THREE.MeshStandardMaterial({ color: '#f0f0f0', metalness: 0.2, roughness: 0.3 });
 const rocketBody = new THREE.Mesh(bodyGeo, bodyMat);
-rocketBody.castShadow = true;
+// Shadows disabled for performance
 
 // Hidung Roket (Kerucut Merah)
 const noseGeo = new THREE.ConeGeometry(0.7, 1.2, 32);
@@ -93,7 +93,7 @@ flag.position.set(0.55, 0.9, 0); // Geser sedikit dari tiang
 flagGroup.add(flag);
 
 // Objek Tambahan 2: Kawah Kecil
-const craterGeo = new THREE.TorusGeometry(0.8, 0.2, 16, 48); // Segmen ditambah untuk detail
+const craterGeo = new THREE.TorusGeometry(0.8, 0.2, 16, 48);
 const craterMat = new THREE.MeshStandardMaterial({ color: "#c7a2d1", roughness: 0.8, metalness: 0.1 }); // Dibuat lebih kasar
 
 // =========================================================
@@ -156,7 +156,7 @@ export default function MainHubIsland({ data, index, isMainGroup = false }: Isla
           window.dispatchEvent(new CustomEvent('setTooltip', { detail: null }))
         }}
       >
-        <mesh castShadow receiveShadow rotation={[-Math.PI / 2, 0, 0]} geometry={baseGeometry} material={baseMaterial} />
+        <mesh rotation={[-Math.PI / 2, 0, 0]} geometry={baseGeometry} material={baseMaterial} />
 
         {/* Roket yang sudah mendarat */}
         <primitive
@@ -180,7 +180,6 @@ export default function MainHubIsland({ data, index, isMainGroup = false }: Isla
           material={craterMat}
           position={[0.5, 1.6, 1.5]} // Tepat di permukaan
           rotation={[-Math.PI / 2, 0, 0]}
-          receiveShadow
         />
 
         <mesh
@@ -188,7 +187,6 @@ export default function MainHubIsland({ data, index, isMainGroup = false }: Isla
           material={craterMat}
           position={[3, 1.6, -0.1]} // Tepat di permukaan
           rotation={[-Math.PI / 2, 0, 0]}
-          receiveShadow
           scale={0.7}
         />
 

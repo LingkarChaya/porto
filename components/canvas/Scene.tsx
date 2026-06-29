@@ -360,9 +360,12 @@ function InnerScene({ currentIndex }: { currentIndex: number }) {
 
 export default function Scene({ currentIndex }: { currentIndex: number }) {
   return (
-    <Canvas dpr={[1, 2]} camera={{ position: [0, 5, 10], fov: 45 }}>
-      <Environment preset="city" />
-      <ambientLight intensity={0.5} />
+    <Canvas dpr={1} camera={{ position: [0, 5, 10], fov: 45 }}>
+      <ambientLight intensity={0.7} />
+      <directionalLight
+        position={[10, 10, 5]}
+        intensity={1.2}
+      />
       <Suspense fallback={null}>
         <InnerScene currentIndex={currentIndex} />
       </Suspense>
